@@ -1,0 +1,110 @@
+===============================================================================
+              CÓMO FLASHEAR TU LILY58 - GUÍA SIMPLE Y DIRECTA
+===============================================================================
+
+IMPORTANTE: QMK Toolbox NO permite escribir en la consola. Es solo lectura.
+Por lo tanto, la forma MÁS FÁCIL es usar QMK MSYS para flashear.
+
+===============================================================================
+                    MÉTODO SIMPLE (SOLO 2 COMANDOS)
+===============================================================================
+
+1. INSTALA QMK MSYS:
+   → https://msys.qmk.fm/
+   → Descarga e instala
+   → Abre "QMK MSYS" desde el menú de inicio de Windows
+
+2. FLASHEA EL LADO IZQUIERDO:
+   
+   a) Conecta SOLO el lado IZQUIERDO del teclado via USB
+   
+   b) En QMK MSYS escribe estos comandos:
+      
+      cd /c/Users/Catalina/qmk_firmware
+      qmk flash -kb lily58/rev1 -km custom_right -bl avrdude-split-left
+   
+   c) Cuando aparezca "waiting for USB device...", presiona el botón RESET
+      en el ProMicro del lado izquierdo
+   
+   d) Espera a que termine (dirá "avrdude.exe done. Thank you.")
+
+3. FLASHEA EL LADO DERECHO:
+   
+   a) DESCONECTA el lado izquierdo
+   
+   b) Conecta SOLO el lado DERECHO del teclado via USB
+   
+   c) En QMK MSYS escribe:
+      
+      qmk flash -kb lily58/rev1 -km custom_right -bl avrdude-split-right
+   
+   d) Cuando aparezca "waiting for USB device...", presiona el botón RESET
+      en el ProMicro del lado derecho
+   
+   e) Espera a que termine (dirá "avrdude.exe done. Thank you.")
+
+4. ¡LISTO! Ahora usa tu teclado:
+   
+   a) Conecta ambos lados con el cable TRRS (cable de 4 contactos)
+   b) Conecta el USB al lado DERECHO
+   c) ¡Tu teclado está listo para usar!
+
+===============================================================================
+                    ¿QUÉ HACE ESTE COMANDO MÁGICO?
+===============================================================================
+
+El comando "qmk flash -kb lily58/rev1 -km custom_right -bl avrdude-split-left" hace DOS cosas:
+
+1. Compila el firmware (si no está compilado)
+2. Flashea el firmware AL LADO CORRECTO
+3. Configura la EEPROM para que ese lado sepa que es IZQUIERDO/DERECHO
+
+Es decir: TODO EN UNO. No necesitas hacer nada más.
+
+===============================================================================
+                        ¿DÓNDE ESTÁ EL BOTÓN RESET?
+===============================================================================
+
+El botón RESET está en el ProMicro (el chip pequeño en el teclado):
+
+- Busca dos pines pequeños marcados como "RST" y "GND"
+- Puedes:
+  * Presionar un botón físico si tu teclado lo tiene
+  * Hacer un "puente" tocando RST y GND con un clip o pinzas
+  * Usar unas pinzas metálicas para conectarlos momentáneamente
+
+===============================================================================
+                          SOLUCIÓN DE PROBLEMAS
+===============================================================================
+
+PROBLEMA: "Command not found: make"
+SOLUCIÓN: Asegúrate de estar usando QMK MSYS, NO el CMD o PowerShell normal
+
+PROBLEMA: "waiting for USB device..." y no pasa nada
+SOLUCIÓN: Presiona el botón RESET. Si no pasa nada en 10 segundos, 
+          presiona RESET de nuevo.
+
+PROBLEMA: "Device not found"
+SOLUCIÓN: Verifica que el cable USB funcione. Intenta otro puerto USB.
+
+PROBLEMA: Un lado no responde después de flashear
+SOLUCIÓN: Reflashea ese lado. Asegúrate de haber usado el comando correcto
+          (split-left para el izquierdo, split-right para el derecho)
+
+PROBLEMA: Ambos lados actúan como el mismo lado
+SOLUCIÓN: Flasheaste ambos con el mismo comando. Reflashea cada lado con
+          su comando correcto.
+
+===============================================================================
+                      RESUMEN ULTRA RÁPIDO
+===============================================================================
+
+1. Instala QMK MSYS
+2. Conecta lado IZQUIERDO → qmk flash -kb lily58/rev1 -km custom_right -bl avrdude-split-left
+3. Presiona RESET cuando lo pida
+4. Conecta lado DERECHO → qmk flash -kb lily58/rev1 -km custom_right -bl avrdude-split-right
+5. Presiona RESET cuando lo pida
+6. Conecta ambos con TRRS + USB al lado derecho
+7. ¡A trabajar!
+
+===============================================================================

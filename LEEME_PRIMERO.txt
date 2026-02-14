@@ -1,0 +1,175 @@
+===============================================================================
+                 🎉 LILY58 OPTIMIZADO PARA ESPAÑOL 🎉
+===============================================================================
+
+✅ KEYMAP COMPLETAMENTE REDISEÑADO PARA:
+   - Layout español (Ñ, tildes, símbolos correctos)
+   - Desarrollo de software (símbolos de programación optimizados)
+   - USB en lado DERECHO o IZQUIERDO (EE_HANDS)
+
+===============================================================================
+                        📋 ARCHIVOS IMPORTANTES
+===============================================================================
+
+🔹 LAYOUT_ESPANOL.txt       ← ¡LEE ESTE! Mapa visual completo de todas las capas
+🔹 COMO_FLASHEAR_SIMPLE.txt ← Guía simple de flasheo paso a paso
+🔹 keymap.c                 ← Código fuente (si quieres personalizarlo más)
+
+===============================================================================
+                   🚀 PASOS PARA COMPILAR Y FLASHEAR
+===============================================================================
+
+PASO 1: COMPILAR
+----------------
+1. Abre QMK MSYS (donde ya compilaste antes)
+2. Ejecuta:
+   cd /c/Users/Catalina/qmk_firmware
+   qmk compile -kb lily58/rev1 -km custom_right
+
+3. Archivo generado:
+   .build/lily58_rev1_custom_right.hex
+
+PASO 2: FLASHEAR LADO IZQUIERDO
+--------------------------------
+1. Conecta SOLO el lado IZQUIERDO via USB
+2. En QMK MSYS ejecuta:
+   qmk flash -kb lily58/rev1 -km custom_right -bl avrdude-split-left
+3. Presiona RESET cuando lo pida (botón físico o doble tap en el bootloader)
+4. Espera a "avrdude.exe done. Thank you."
+
+PASO 3: FLASHEAR LADO DERECHO
+------------------------------
+1. Desconecta el lado izquierdo
+2. Conecta SOLO el lado DERECHO via USB
+3. En QMK MSYS ejecuta:
+   qmk flash -kb lily58/rev1 -km custom_right -bl avrdude-split-right
+4. Presiona RESET cuando lo pida (botón físico o doble tap en el bootloader)
+5. Espera a "avrdude.exe done. Thank you."
+
+PASO 4: ¡USAR TU TECLADO!
+--------------------------
+1. Conecta ambos lados con el cable TRRS
+2. Conecta el USB al lado DERECHO
+3. ¡Listo!
+
+===============================================================================
+                      ⚙️ CONFIGURAR WINDOWS EN ESPAÑOL
+===============================================================================
+
+IMPORTANTE: Para que funcionen la Ñ y las tildes correctamente:
+
+1. Windows Settings → Time & Language → Language
+2. Añade/selecciona: Español (España) o Español (Latinoamérica)
+3. Options → Add keyboard → Spanish
+
+===============================================================================
+                         🎹 RESUMEN DE LAS CAPAS
+===============================================================================
+
+BASE (Predeterminada):
+  ✓ Layout QWERTY con Ñ en su lugar
+  ✓ Tildes: ´ + vocal → á é í ó ú
+  ✓ AltGr en puente izquierdo
+  ✓ Delete en puente derecho
+  ✓ Backspace en thumb derecho (más ergonómico)
+
+LOWER (Mantén tecla thumb izquierdo 3ra posición):
+  ✓ Símbolos de programación: [] {} () <> !@#$%&|\
+  ✓ Numpad completo en mano derecha
+  ✓ Funciones F1-F10
+  ✓ Controles de volumen
+
+HIGHER (Mantén tecla thumb derecho 1ra posición):
+  ✓ Flechas de navegación
+  ✓ Atajos: Undo, Cut, Copy, Paste, Redo
+  ✓ Borrar palabra: Ctrl+Bksp / Ctrl+Del
+  ✓ Home, End, PgUp, PgDn
+  ✓ Funciones F1-F15
+
+ADJUST (Presiona LOWER + HIGHER juntos):
+  ✓ Control RGB (color, brillo, modo)
+  ✓ Controles multimedia (play, vol, etc)
+  ✓ RESET/BOOT para flashear
+  ✓ EEPROM clear
+
+===============================================================================
+                          📝 EJEMPLOS DE USO
+===============================================================================
+
+ESCRIBIR CON TILDES:
+  Para "México":
+    1. M + e + x + ´ + i (aparece í) + c + o
+
+SÍMBOLOS DE PROGRAMACIÓN:
+  Para "if (x > 0) { return true; }":
+    - ( ) están en LOWER (fila inferior)
+    - > está en LOWER
+    - { } están en LOWER (segunda fila)
+
+NAVEGACIÓN RÁPIDA:
+  - Mantén HIGHER y usa flechas
+  - Ctrl+Backspace borra palabra anterior
+  - Home/End para inicio/fin de línea
+
+===============================================================================
+                        🔧 PERSONALIZACIÓN
+===============================================================================
+
+¿Quieres cambiar algo?
+1. Edita: keyboards/lily58/keymaps/custom_right/keymap.c
+2. Busca la capa que quieres modificar (_BASE, _LOWER, _HIGHER, _ADJUST)
+3. Cambia los keycodes
+4. Recompila: qmk compile -kb lily58/rev1 -km custom_right
+5. Reflashea ambos lados
+
+Referencia de keycodes: https://docs.qmk.fm/#/keycodes
+
+===============================================================================
+                          ❓ SOLUCIÓN DE PROBLEMAS
+===============================================================================
+
+⚠️ NO FUNCIONA LA Ñ O LAS TILDES:
+   → Verifica que Windows esté configurado con teclado ESPAÑOL
+   → La tecla ´ está en la esquina superior derecha
+
+⚠️ LOS SÍMBOLOS ESTÁN EN LUGARES RAROS:
+   → Windows debe estar en layout ESPAÑOL, no US Internacional
+
+⚠️ UN LADO NO RESPONDE:
+   → Verifica el cable TRRS esté bien conectado
+   → Reflashea ese lado con el comando correcto (split-left/split-right)
+
+⚠️ AMBOS LADOS ACTÚAN IGUAL:
+   → Flasheaste ambos con el mismo comando
+   → Reflashea: uno con split-left, otro con split-right
+
+⚠️ NO COMPILA:
+   → Asegúrate de estar en QMK MSYS, no en WSL/PowerShell
+   → Verifica que no haya errores de sintaxis en keymap.c
+
+===============================================================================
+                         📚 DOCUMENTACIÓN COMPLETA
+===============================================================================
+
+LAYOUT_ESPANOL.txt          - Mapa visual detallado de todas las capas
+COMO_FLASHEAR_SIMPLE.txt    - Guía de flasheo paso a paso
+INSTRUCCIONES_COMPILACION.md - Opciones avanzadas de compilación
+RESUMEN_COMPLETO.md         - Documentación técnica completa
+GUIA_RAPIDA.txt             - Referencia rápida
+
+===============================================================================
+                            🎊 ¡TODO LISTO!
+===============================================================================
+
+Tu Lily58 ahora está optimizado para:
+  ✅ Español (Ñ, tildes, símbolos correctos)
+  ✅ Desarrollo de software (símbolos optimizados)
+  ✅ USB en lado derecho
+  ✅ Navegación eficiente
+  ✅ Atajos de edición
+  ✅ Numpad integrado
+  ✅ Control RGB y multimedia
+
+¡Feliz programación! 🚀
+
+===============================================================================
