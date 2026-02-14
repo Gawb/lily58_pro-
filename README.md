@@ -1,6 +1,7 @@
 # Lily58 Custom Right - Keymap Personalizado
 
 Para que todo quede igual que en el esquema, debes dejar el teclado Español(España) Latinoamerica, como en la siguiente imagen:
+
 <img width="362" height="110" alt="image" src="https://github.com/user-attachments/assets/13881ed7-6d93-420c-9b2e-be30c023ad98" />
 
 
